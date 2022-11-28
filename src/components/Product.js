@@ -10,12 +10,10 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { AddShoppingCart } from '@material-ui/icons';
 import accounting from "accounting";
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Product() {
+export default function Product({product : { name, productShortDescription, price, image}}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -49,21 +47,21 @@ export default function Product() {
           variant= "h5"
           color="textSecondary"
           >
-            {accounting.formatMoney(120000)}
+            {accounting.formatMoney(price)}
           </Typography>
         }
-        title="Invictus"
+        title={name}
         subheader="Disponible"
       />
       <CardMedia
         component="img"
         height="194"
-        image="https://carulla.vtexassets.com/arquivos/ids/5887782/perfume-paco-rabanne-invictus-5-oz-150-ml-hombre.jpg?v=637669068951630000"
-        alt="Invictus"
+        image={image}
+        alt="invictus"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-            Fragancia Invictus de Paco Rabane
+        {productShortDescription}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -85,13 +83,11 @@ export default function Product() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            Invictus de Paco Rabanne es una fragancia de la familia olfativa Amaderada Acuática
-            para Hombres. Las Notas de Salida son notas marinas, toronja (pomelo) y mandarina; 
-            las Notas de Corazón son hoja de laurel y jazmín; las Notas de Fondo son ámbar gris,
-            madera de gaiac, musgo de roble y pachulí.
+          CH MENCH Men de Carolina Herrera es un fragante reflejo de su verdad y pasión. Trabaja duro y viaja lejos para convertir sus sueños en realidad, manteniendo su sensibilidad refinada y su humor cálido en el camino. La vida del hombre CH es como un largo viaje, lleno de encuentros y emociones. Para el hombre CH la experiencia más importante es el propio viaje, que se refleja en su intrépido aroma curtido y amaderado. EL VIAJE NOBLELa fragancia del hombre CH es un resumen de todos sus viajes. Es su memoria olfativa; una fragancia eterna con una personalidad única. Una nueva masculinidad contemporánea, la fragancia captura la quintaesencia de la elegancia y la habilidad de adaptarse a diferentes situaciones con un aire de espontaneidad.CARÁCTER DESPREOCUPADOUn viaje sensorial por sí solo, el calor y la masculinidad de la madera y el toque adictivo pero suave del cuero se funden con un toque de azafrán para aportar nuevas dimensiones a la sofisticación.
           </Typography>
         </CardContent>
       </Collapse>
     </Card>
+    
   );
 }

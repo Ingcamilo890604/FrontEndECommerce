@@ -8,6 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import logo from "../assets/logoperfumeria.png";
 import { makeStyles} from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
+import { ShoppingCart } from '@material-ui/icons';
+import { Badge } from '@mui/material';
 
 
 const useStyles = makeStyles((theme)=>({
@@ -16,8 +18,8 @@ const useStyles = makeStyles((theme)=>({
         flexGrow : 1,
         marginBottom: "7rem"
     },
-    AppBar:{
-        backgroundColor: "whitesmoke",
+    appBar:{
+        backgroundColor: "whiteSmoke",
         boxShadow: "none",
     },
     grow : {
@@ -38,9 +40,9 @@ export default function Navbar() {
 
     const classes = useStyles();
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" className='Navbar' backgroundColor= "black">
-        <Toolbar>
+    <Box className={classes.root} sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed"  >
+        <Toolbar className={classes.appBar}>
           <IconButton
             size="large"
             edge="start"
@@ -50,10 +52,16 @@ export default function Navbar() {
           >
             <img src= {logo} className={classes.image}/>
           </IconButton>
+          <div className={classes.grow}/>
           <Typography variant="h6" color="textPrimary" component="p" sx={{ flexGrow: 1 }}>
             Bienvenidos a la Perfumería
           </Typography>
-          <Button className={classes.Button} variant="outlined" color="inherit"><strong>Inicia Sesión</strong></Button>
+          <Button className={classes.Button} variant="outlined"><strong>Inicia Sesión</strong></Button>
+          <Button className={classes.Button} >
+            <Badge badgeContent={2} color="secondary">
+              <ShoppingCart fontSize='large' color='primary'/>
+            </Badge>
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useMutation } from 'react-query';
+import { getFragancesList } from '../apis/fragances';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -23,19 +25,35 @@ const useStyles = makeStyles((theme)=>({
 
 
 export default function Products() {
+    const [data, setData] = React.useState(null);
+
     const classes = useStyles();
+    React.useEffect(() => {
+		getFragancesList(null).then(response => {
+            setData(response.data)
+		}).catch(err => {console.error(err)})
+	},[]);
+   
+ console.log(data);
     return (
-        <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={5} className="grids">
-            {
-                products.map(product=>{
-                    return(<Grid >
-                        <Product key={product.id} product = {product}/>
-                         </Grid>);
-                    
-                })
+        <div>
+            {!!data && (
+                <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={5} className="grids">
+                    {
+                        data.map(product=>{
+                            return(<Grid >
+                                <Product key={product.id} product = {product}/>
+                                </Grid>);
+                            
+                        })
+                    }
+                </Grid>
+                </Box>
+            )
             }
-        </Grid>
-        </Box>
+            
+        </div>
+        
   );
 }

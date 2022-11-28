@@ -14,7 +14,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { AddShoppingCart } from '@material-ui/icons';
 import accounting from "accounting";
 
-
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -26,7 +25,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Product({product : { name, productShortDescription, price, image}}) {
+export default function Product({product : { name, description, price, images}}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -56,12 +55,12 @@ export default function Product({product : { name, productShortDescription, pric
       <CardMedia
         component="img"
         height="194"
-        image={image}
+        image={images[0]}
         alt="invictus"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-        {productShortDescription}
+        {description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -83,7 +82,7 @@ export default function Product({product : { name, productShortDescription, pric
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-          CH MENCH Men de Carolina Herrera es un fragante reflejo de su verdad y pasión. Trabaja duro y viaja lejos para convertir sus sueños en realidad, manteniendo su sensibilidad refinada y su humor cálido en el camino. La vida del hombre CH es como un largo viaje, lleno de encuentros y emociones. Para el hombre CH la experiencia más importante es el propio viaje, que se refleja en su intrépido aroma curtido y amaderado. EL VIAJE NOBLELa fragancia del hombre CH es un resumen de todos sus viajes. Es su memoria olfativa; una fragancia eterna con una personalidad única. Una nueva masculinidad contemporánea, la fragancia captura la quintaesencia de la elegancia y la habilidad de adaptarse a diferentes situaciones con un aire de espontaneidad.CARÁCTER DESPREOCUPADOUn viaje sensorial por sí solo, el calor y la masculinidad de la madera y el toque adictivo pero suave del cuero se funden con un toque de azafrán para aportar nuevas dimensiones a la sofisticación.
+          {description}
           </Typography>
         </CardContent>
       </Collapse>
